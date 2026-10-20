@@ -1,0 +1,12 @@
+lab:
+  appName: platform-challenge
+  namespace: platform-challenge
+  replicaCount: 1
+
+  service:
+    enabled: true
+    port: 8080
+    protocol: TCP
+  image:
+    repository: christiancostap/lab
+    tag: ccd2d90cccbc

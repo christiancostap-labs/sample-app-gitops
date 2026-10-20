@@ -26,6 +26,7 @@ jobs:
         id: kubeconfig
         run: |
           kubectl config get-contexts
+          
       # - name: KubeConfig Setup
       #   uses: azure/k8s-set-context@v3
 

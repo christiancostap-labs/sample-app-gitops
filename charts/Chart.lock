@@ -1,0 +1,6 @@
+dependencies:
+- name: lab
+  repository: https://christiancostap-labs.github.io/lab-charts/
+  version: 0.0.2
+digest: sha256:1353f2db7637ac03304f729a0fe6ee139cd1b54426cc2abb4380ef0580bef92e
+generated: "2026-10-20T19:21:46.374761413-03:00"

@@ -22,7 +22,7 @@ jobs:
       - name: Get Pipeline Configuration
         id: config
         run: |
-          echo "argocd_application_name=$(yq e '.argocd.application.name' sample-app/config.yaml)" >> "$GITHUB_OUTPUT"
+          echo "argocd_application_name=$(yq e '.argocd.application.name' sample-app-gitops/config.yaml)" >> "$GITHUB_OUTPUT"
           echo ${{ github.repository }}
 
       # - name: setup kubectl

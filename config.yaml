@@ -1,0 +1,3 @@
+argocd:
+  application:
+    name: sample-app

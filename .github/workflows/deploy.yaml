@@ -28,8 +28,8 @@ jobs:
         id: config
         run: |
           pwd
-          echo "argocd_application_name=$(yq '.argocd.application.name'config.yaml)" >> "$GITHUB_OUTPUT"
-          echo ${{ github.repository }}
+          yq '.argocd.application.name' config.yaml
+          echo "argocd_application_name=$(yq '.argocd.application.name' config.yaml)" >> "$GITHUB_OUTPUT"
 
       # - name: setup kubectl
       #   uses: azure/setup-kubectl@v4

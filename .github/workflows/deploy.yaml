@@ -59,14 +59,14 @@ jobs:
       - name: Create ArgoCD Application
         run: |
           argocd app create ${{ steps.config.outputs.argocd_application_name }} \
-            --repo ${{ github.repository }} \
+            --repo https://github.com/${{ github.repository }} \
             --path sample-app-gitops/charts \
             --dest-server https://kubernetes.default.svc \
-            --dest-namespace argocd \
             --sync-policy automated \
             --self-heal \
             --auto-prune \
             --revision main
+
         # - name: KubeConfig Setup
       #   uses: azure/k8s-set-context@v3
 

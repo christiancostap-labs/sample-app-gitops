@@ -60,7 +60,7 @@ jobs:
         run: |
           argocd app create ${{ steps.config.outputs.argocd_application_name }} \
             --repo https://github.com/${{ github.repository }} \
-            --path sample-app-gitops/charts \
+            --path ./charts \
             --dest-server https://kubernetes.default.svc \
             --sync-policy automated \
             --self-heal \

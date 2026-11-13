@@ -8,5 +8,5 @@ lab:
     port: 8080
     protocol: TCP
   image:
-    repository: christiancostap/lab
-    tag: ccd2d90cccbc
+    repository: ghcr.io/christiancostap-labs/sample-app-ci
+    tag: 4a1d65077bb92799825feb0e52666354c405e16c

@@ -61,9 +61,6 @@ jobs:
           ARGO_APP_NAME: ${{ steps.config.outputs.argocd_application_name }}
 
         run: |
-          argocd app get "$ARGO_APP_NAME" >/dev/null 2>&1
-          echo "Exit code: $?"
-
           if ! argocd app get "$ARGO_APP_NAME" >/dev/null 2>&1; then
             echo "checkpoint 1"
             argocd app create "$ARGO_APP_NAME" \

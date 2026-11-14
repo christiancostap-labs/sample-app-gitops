@@ -61,8 +61,12 @@ jobs:
           ARGO_APP_NAME: ${{ steps.config.outputs.argocd_application_name }}
 
         run: |
-          if ! argocd app get $ARGO_APP_NAME >/dev/null 2>&1; then
-            argocd app create $ARGO_APP_NAME \
+          argocd app get "$ARGO_APP_NAME" >/dev/null 2>&1
+          echo "Exit code: $?"
+
+          if ! argocd app get "$ARGO_APP_NAME" >/dev/null 2>&1; then
+            echo "checkpoint 1"
+            argocd app create "$ARGO_APP_NAME" \
             --repo https://github.com/${{ github.repository }} \
             --path ./charts \
             --dest-server https://kubernetes.default.svc \
@@ -71,12 +75,12 @@ jobs:
           else
             echo "App already exists in the cluster"
           fi
-        
+
       - name: Sync ArgoCD App
         env:
           ARGO_APP_NAME: ${{ steps.config.outputs.argocd_application_name }}
         run: |
-          argocd app sync $ARGO_APP_NAME
+          argocd app sync "$ARGO_APP_NAME"
           argocd app wait "$ARGO_APP_NAME" \
             --sync \
             --health \

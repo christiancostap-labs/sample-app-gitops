@@ -9,4 +9,4 @@ lab:
     protocol: TCP
   image:
     repository: ghcr.io/christiancostap-labs/sample-app-ci
-    tag: 4a1d65077bb92799825feb0e52666354c405e16c
+    tag: 92e2db62a3c171d27704c27b4465dc26e46a441c

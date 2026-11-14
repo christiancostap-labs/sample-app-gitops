@@ -57,15 +57,32 @@ jobs:
           --plaintext
       
       - name: Create ArgoCD Application
+        env: 
+          ARGO_APP_NAME: ${{ steps.config.outputs.argocd_application_name }}
+
         run: |
-          argocd app create ${{ steps.config.outputs.argocd_application_name }} \
+          if ! argocd app get $ARGO_APP_NAME >/dev/null 2>&1; then
+            argocd app create $APP_NAME \
             --repo https://github.com/${{ github.repository }} \
             --path ./charts \
             --dest-server https://kubernetes.default.svc \
-            --sync-policy automated \
-            --self-heal \
-            --auto-prune \
-            --revision main
+            --sync-policy manual \
+            --self-heal 
+          else
+            echo "App already exists in the cluster"
+          fi
+        
+      - name: Sync ArgoCD App
+        env:
+          ARGO_APP_NAME: ${{ steps.config.outputs.argocd_application_name }}
+        run: |
+          argocd app sync $ARGO_APP_NAME
+          argocd app wait "$APP_NAME" \
+            --sync \
+            --health \
+            --timeout 300
+        # --auto-prune \
+        # --revision main
 
         # - name: KubeConfig Setup
       #   uses: azure/k8s-set-context@v3
